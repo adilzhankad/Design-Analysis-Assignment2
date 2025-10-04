@@ -1,4 +1,6 @@
 package com.assignment2.metrics;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class PerformanceTracker {
     private long comparisons = 0;
@@ -18,4 +20,16 @@ public class PerformanceTracker {
                 ", Swaps=" + swaps +
                 ", ArrayAccesses=" + arrayAccesses;
     }
+
+
+
+    public void exportToCSV(String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            writer.write("comparisons,swaps,arrayAccesses\n");
+            writer.write(comparisons + "," + swaps + "," + arrayAccesses + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
